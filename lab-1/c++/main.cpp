@@ -1,5 +1,5 @@
 #include <iostream>
-#include "StringManipulator.h"
+#include "StringS.h"
 
 int main() {
     using namespace std;
