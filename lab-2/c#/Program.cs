@@ -9,6 +9,7 @@ class Program
 
         Console.Write("Enter a string: ");
         string input = Console.ReadLine();
+
         StringManipulator sm2 = new StringManipulator(input);
         Console.WriteLine("Entered string: " + sm2.GetText());
         Console.WriteLine("Length of the string: " + sm2.CalculateLength());

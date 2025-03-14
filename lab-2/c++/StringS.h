@@ -1,22 +1,31 @@
-#ifndef STRINGS_H
-#define STRINGS_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
-#include <string>
-using namespace std;
+#include <iostream>
+#include <cmath>
 
-class StringManipulator {
+class Vector2D {
 private:
-    string text;
+    double length; // Довжина вектора
+    double angle;  // Кут вектора (в радіанах)
 
 public:
-    StringManipulator();
-    StringManipulator(const string& str);
-    StringManipulator(const StringManipulator& other);
-    ~StringManipulator();
-    int calculateLength() const;
-    void shiftRight();
-    string getText() const;
-    StringManipulator& operator=(const StringManipulator& other);
+    // Конструктори
+    Vector2D(); // Конструктор за замовчуванням
+    Vector2D(double l, double a); // Конструктор з параметрами
+    Vector2D(const Vector2D& other); // Конструктор копіювання
+
+    // Методи
+    void rotate(double angle); // Поворот вектора на заданий кут
+    double getLength() const; // Отримання довжини вектора
+    double getAngle() const; // Отримання кута вектора
+
+    // Перевантаження операторів
+    Vector2D operator+(const Vector2D& other) const; // Додавання векторів
+    Vector2D operator*(double scalar) const; // Множення вектора на скаляр
+
+    // Виведення вектора на екран
+    void print() const;
 };
 
 #endif
