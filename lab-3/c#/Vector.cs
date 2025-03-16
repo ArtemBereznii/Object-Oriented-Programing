@@ -1,33 +1,36 @@
 ﻿using System;
 
-public class Vector2D
+public class Vector
 {
-    private double length; // Довжина вектора
-    private double angle;  // Кут вектора (в радіанах)
+    private double length;
+    private double angle;
 
-    // Конструктори
-    public Vector2D()
+    public Vector()
     {
         length = 0;
         angle = 0;
     }
 
-    public Vector2D(double l, double a)
+    public Vector(double l, double a)
     {
         length = l;
         angle = a;
     }
 
-    public Vector2D(Vector2D other)
+    public Vector(Vector other)
     {
         length = other.length;
         angle = other.angle;
     }
 
-    // Методи
     public void Rotate(double angle)
     {
         this.angle += angle;
+    }
+
+    public void Rotate()
+    {
+        this.angle += Math.PI / 2;
     }
 
     public double GetLength()
@@ -40,8 +43,7 @@ public class Vector2D
         return angle;
     }
 
-    // Перевантаження оператора додавання
-    public static Vector2D operator +(Vector2D v1, Vector2D v2)
+    public static Vector operator +(Vector v1, Vector v2)
     {
         double x1 = v1.length * Math.Cos(v1.angle);
         double y1 = v1.length * Math.Sin(v1.angle);
@@ -55,16 +57,26 @@ public class Vector2D
         double newLength = Math.Sqrt(x * x + y * y);
         double newAngle = Math.Atan2(y, x);
 
-        return new Vector2D(newLength, newAngle);
+        return new Vector(newLength, newAngle);
     }
 
-    // Перевантаження оператора множення на скаляр
-    public static Vector2D operator *(Vector2D v, double scalar)
+    public static Vector operator *(Vector v, double scalar)
     {
-        return new Vector2D(v.length * scalar, v.angle);
+        return new Vector(v.length * scalar, v.angle);
     }
 
-    // Виведення вектора на екран
+    public static Vector AddVectors(params Vector[] vectors)
+    {
+        Vector result = new Vector();
+
+        foreach (var v in vectors)
+        {
+            result = result + v;
+        }
+
+        return result;
+    }
+
     public void Print()
     {
         Console.WriteLine($"Length: {length}, Angle: {angle} radians");

@@ -1,25 +1,33 @@
 #include "Vector.h"
-#include <cmath>
 
-Vector2D::Vector2D() : length(0), angle(0) {}
+#include <iostream>
+#include <cstdarg>
 
-Vector2D::Vector2D(double l, double a) : length(l), angle(a) {}
+const double M_PI = 3.14159265358979323846;
 
-Vector2D::Vector2D(const Vector2D& other) : length(other.length), angle(other.angle) {}
+Vector::Vector() : length(0), angle(0) {}
 
-void Vector2D::rotate(double angle) {
+Vector::Vector(double l, double a) : length(l), angle(a) {}
+
+Vector::Vector(const Vector& other) : length(other.length), angle(other.angle) {}
+
+void Vector::rotate(double angle) {
     this->angle += angle;
 }
 
-double Vector2D::getLength() const {
+void Vector::rotate() {
+    this->angle += M_PI / 2;
+}
+
+double Vector::getLength() const {
     return length;
 }
 
-double Vector2D::getAngle() const {
+double Vector::getAngle() const {
     return angle;
 }
 
-Vector2D Vector2D::operator+(const Vector2D& other) const {
+Vector Vector::operator+(const Vector& other) const {
     double x1 = length * cos(angle);
     double y1 = length * sin(angle);
 
@@ -32,13 +40,28 @@ Vector2D Vector2D::operator+(const Vector2D& other) const {
     double newLength = sqrt(x * x + y * y);
     double newAngle = atan2(y, x);
 
-    return Vector2D(newLength, newAngle);
+    return Vector(newLength, newAngle);
 }
 
-Vector2D Vector2D::operator*(double scalar) const {
-    return Vector2D(length * scalar, angle);
+Vector Vector::operator*(double scalar) const {
+    return Vector(length * scalar, angle);
 }
 
-void Vector2D::print() const {
+Vector Vector::AddVectors(int count, ...) {
+    va_list args;
+    va_start(args, count);
+
+    Vector result;
+
+    for (int i = 0; i < count; ++i) {
+        Vector v = va_arg(args, Vector);
+        result = result + v;
+    }
+
+    va_end(args);
+    return result;
+}
+
+void Vector::print() const {
     std::cout << "Length: " << length << ", Angle: " << angle << " radians" << std::endl;
 }

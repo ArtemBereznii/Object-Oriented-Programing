@@ -1,26 +1,24 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <iostream>
-#include <cmath>
+#include <vector>
 
-class Vector2D {
+class Vector {
 private:
     double length;
-    double angle; 
+    double angle;
 
 public:
-    Vector2D();
-    Vector2D(double l, double a);
-    Vector2D(const Vector2D& other); 
-
+    Vector();
+    Vector(double l, double a);
+    Vector(const Vector& other);
     void rotate(double angle);
-    double getLength() const; 
+    void rotate();
+    double getLength() const;
     double getAngle() const;
-
-    Vector2D operator+(const Vector2D& other) const;
-    Vector2D operator*(double scalar) const;
-
+    Vector operator+(const Vector& other) const;
+    Vector operator*(double scalar) const;
+    static Vector AddVectors(int count, ...);
     void print() const;
 };
 
