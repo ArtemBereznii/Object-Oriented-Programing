@@ -1,7 +1,14 @@
 #include "Line.h"
+#include <cmath>
+
+Line::Line() : x1(0), y1(0), x2(0), y2(0) {}
 
 Line::Line(double x1, double y1, double x2, double y2)
     : x1(x1), y1(y1), x2(x2), y2(y2) {
+}
+
+Line::Line(const Line& other)
+    : x1(other.x1), y1(other.y1), x2(other.x2), y2(other.y2) {
 }
 
 double Line::calculateLength() const {

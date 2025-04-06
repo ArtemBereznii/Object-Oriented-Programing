@@ -1,14 +1,14 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include <cmath>
-
 class Line {
 protected:
     double x1, y1, x2, y2;
 
 public:
-    Line(double x1, double y1, double x2, double y2);
+    Line();
+    Line(double x1, double y1, double x2, double y2); 
+    Line(const Line& other); 
     double calculateLength() const;
     double getX1() const;
     double getY1() const;
