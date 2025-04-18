@@ -9,7 +9,9 @@ public:
     Line();
     Line(double x1, double y1, double x2, double y2); 
     Line(const Line& other); 
+
     double calculateLength() const;
+
     double getX1() const;
     double getY1() const;
     double getX2() const;
