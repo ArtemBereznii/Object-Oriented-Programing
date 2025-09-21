@@ -7,13 +7,13 @@ namespace IndexerAndPropertyDemo
         private int[] array;
         private int length;
 
-        
+
         public int Length
         {
             get { return length; }
         }
 
-        
+
         public IntArray(int size)
         {
             if (size <= 0)
@@ -23,7 +23,7 @@ namespace IndexerAndPropertyDemo
             length = size;
         }
 
-        
+
         public int this[int index]
         {
             get
@@ -47,26 +47,26 @@ namespace IndexerAndPropertyDemo
         {
             try
             {
-                
+
                 IntArray myArray = new IntArray(5);
 
-                
+
                 for (int i = 0; i < myArray.Length; i++)
                 {
                     myArray[i] = i * 10;
                 }
 
-                
+
                 Console.WriteLine($"Array length: {myArray.Length}");
 
-                
+
                 Console.WriteLine("Array elements:");
                 for (int i = 0; i < myArray.Length; i++)
                 {
                     Console.WriteLine($"myArray[{i}] = {myArray[i]}");
                 }
 
-                
+
                 Console.WriteLine("Attempt to access non-existent element:");
                 Console.WriteLine(myArray[10]);
             }
