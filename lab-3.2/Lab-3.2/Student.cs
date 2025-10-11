@@ -4,7 +4,6 @@ namespace LabOOP3
 {
     public class Student : IComparable<Student>
     {
-        // Властивості класу
         public string TicketNumber { get; set; }
         public string FullName { get; set; }
         public int BirthYear { get; set; }

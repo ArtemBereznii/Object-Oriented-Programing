@@ -49,7 +49,6 @@ namespace LabOOP3
             Console.WriteLine("Початковий масив:");
             Array.ForEach(studentArray, s => s.DisplayInfo());
 
-            // Видалення (імітація через фільтрацію і створення нового масиву)
             Console.WriteLine("\n-> Видалення: видаляємо Сидоренка С.С.");
             studentArray = studentArray.Where(s => s.TicketNumber != "EF345678").ToArray();
             Console.WriteLine("Кінцевий масив:");
