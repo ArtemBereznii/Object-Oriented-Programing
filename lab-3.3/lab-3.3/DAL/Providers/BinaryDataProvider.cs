@@ -14,24 +14,24 @@ namespace DAL.Providers
                 return new List<Student>();
 
             // BinaryFormatter застарів, але часто вимагається в лабах
-#pragma warning disable SYSLIB0011
+            #pragma warning disable SYSLIB0011
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
                 return (IEnumerable<Student>)formatter.Deserialize(fs);
             }
-#pragma warning restore SYSLIB0011
+            #pragma warning restore SYSLIB0011
         }
 
         public void Save(string filePath, IEnumerable<Student> data)
         {
-#pragma warning disable SYSLIB0011
+            #pragma warning disable SYSLIB0011
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
                 formatter.Serialize(fs, data);
             }
-#pragma warning restore SYSLIB0011
+            #pragma warning restore SYSLIB0011
         }
     }
 }

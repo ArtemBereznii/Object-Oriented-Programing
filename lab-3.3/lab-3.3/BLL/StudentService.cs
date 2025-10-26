@@ -38,7 +38,6 @@ namespace BLL.Services
         }
 
         // --- ЛОГІКА ЗАВДАННЯ ВАРІАНТУ ---
-        [cite_start]// 
         public IEnumerable<StudentDTO> GetSummerBornThirdYears()
         {
             if (!_students.Any())

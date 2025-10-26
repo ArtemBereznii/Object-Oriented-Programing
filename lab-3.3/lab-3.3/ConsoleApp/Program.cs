@@ -21,7 +21,7 @@ namespace ConsoleApp
             // 3. Створюємо PL і передаємо йому BLL
             var menu = new Menu(studentService);
 
-            [cite_start]// 4. Запускаємо меню (єдиний виклик) [cite: 64]
+            // 4. Запускаємо меню (єдиний виклик)
             menu.MainMenu();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace BLL.Exceptions
 {
-    [cite_start]// Власний клас виключення 
+    // Власний клас виключення 
     public class DataValidationException : Exception
     {
         public string FieldName { get; }

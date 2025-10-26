@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DAL
 {
-    [cite_start]// Цей клас відповідає за фізичну роботу з даними 
+    // Цей клас відповідає за фізичну роботу з даними 
     public class EntityContext
     {
         // Метод, що приймає будь-який провайдер
