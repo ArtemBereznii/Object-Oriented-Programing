@@ -13,12 +13,9 @@ namespace Lab3_4
             Name = name;
         }
 
-        
         /// Метод-обробник, що реагує на подію.
-        /// Його сигнатура відповідає стандарту .NET
         public void OnCarOutOfGas(object? sender, OutOfGasEventArgs e)
         {
-            // Отримуємо інформацію про ініціатора події
             Car? car = sender as Car;
             if (car == null) return;
 
