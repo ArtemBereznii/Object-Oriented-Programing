@@ -5,8 +5,6 @@ namespace Lab3_4
 {
     class Program
     {
-        // ------------------ ЗАВДАННЯ 1 ------------------
-
         // 1. Оголошуємо тип делегата з відповідним підписом 
         // ("Сортування одновимірного масиву цілих чисел за зростанням" )
         public delegate void SortDelegate(int[] array);
@@ -23,7 +21,7 @@ namespace Lab3_4
             int[] numbers = { 5, 1, 9, 3, 7, 2, 8 };
             PrintArray("Початковий масив", numbers);
 
-            // 2. Використання Анонімного методу (для оцінки "добре") 
+            // 2. Використання Анонімного методу
             SortDelegate anonymousSorter = delegate (int[] arr)
             {
                 Array.Sort(arr);
@@ -31,7 +29,6 @@ namespace Lab3_4
             anonymousSorter(numbers);
             PrintArray("Після анонімного методу", numbers);
 
-            // Скидаємо масив
             numbers = new int[] { 5, 1, 9, 3, 7, 2, 8 };
 
             // 3. Використання Лямбда-виразу 
@@ -50,7 +47,7 @@ namespace Lab3_4
             Console.WriteLine("\n\n========= ЗАВДАННЯ 2-3: ПОДІЇ =========");
 
             // 1. Створюємо компонент (видавця) 
-            Car myCar = new Car("BMW", 10.0, 10.0); // 10л, 10 л/100км
+            Car myCar = new Car("BMW", 10.0, 10.0);
 
             // 2. Створюємо підписника з обробником 
             Driver driver = new Driver("Олександр");
@@ -59,10 +56,10 @@ namespace Lab3_4
             myCar.OutOfGas += driver.OnCarOutOfGas;
 
             // 4. Демонстрація
-            myCar.Drive(50);  // Їдемо 50 км (треба 5л). Залишок: 5л. Подія не спрацює.
-            myCar.Drive(70);  // Їдемо 70 км (треба 7л). Залишок: 0л. Подія спрацює!
-            myCar.Refuel(20.0); // Заправляємось
-            myCar.Drive(100); // Їдемо 100 км (треба 10л). Залишок: 10л.
+            myCar.Drive(50);
+            myCar.Drive(70);
+            myCar.Refuel(20.0);
+            myCar.Drive(100);
         }
 
         public static void Main(string[] args)

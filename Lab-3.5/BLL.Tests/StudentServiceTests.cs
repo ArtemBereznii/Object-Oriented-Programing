@@ -24,7 +24,6 @@ namespace BLL.Tests
             _mockRepo = new Mock<IStudentRepository>();
             _mockNet = new Mock<IInternetService>();
 
-            // Створюємо сервіс, "ін'єктуючи" в нього фальшиві (Mock) об'єкти
             _studentService = new StudentService(_mockRepo.Object, _mockNet.Object);
         }
 
@@ -41,7 +40,6 @@ namespace BLL.Tests
                 // Не той місяць
                 new Student { FirstName = "Зимовий", Course = 3, BirthDate = new DateTime(2000, 1, 10) }
             };
-            // Навчаємо наш Mock: коли BLL попросить студентів, повернути цей список
             _mockRepo.Setup(r => r.GetStudents()).Returns(students);
 
             // Act (Дія)
@@ -55,87 +53,69 @@ namespace BLL.Tests
         [TestMethod]
         public void AdvanceStudentCourse_FromCourse5_IncrementsTo6()
         {
-            // Arrange
             var student = new Student { Course = 5 };
 
-            // Act
             _studentService.AdvanceStudentCourse(student);
 
-            // Assert
             Assert.AreEqual(6, student.Course);
         }
 
         [TestMethod]
         public void AdvanceStudentCourse_FromCourse6_Stays6()
         {
-            // Arrange
             var student = new Student { Course = 6 };
 
-            // Act
             _studentService.AdvanceStudentCourse(student);
 
-            // Assert
             Assert.AreEqual(6, student.Course);
         }
 
         [TestMethod]
         public void Sing_ReturnsCorrectString()
         {
-            // Arrange
             var student = new Student { FirstName = "Анна" };
             string expected = "Анна співає: Ла-ла-ла!";
 
-            // Act
             string result = _studentService.Sing(student);
 
-            // Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void StudyOnline_WhenInternetIsConnected_ReturnsSuccess()
         {
-            // Arrange
             var student = new Student { FirstName = "Іван" };
-            // Навчаємо Mock: коли BLL запитає про інтернет, повернути "true"
+            
             _mockNet.Setup(net => net.IsConnected()).Returns(true);
             string expected = "Іван вчиться онлайн.";
 
-            // Act
             string result = _studentService.StudyOnline(student);
 
-            // Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void StudyOnline_WhenInternetIsOffline_ReturnsFailure()
         {
-            // Arrange
             var student = new Student { FirstName = "Іван" };
-            // Навчаємо Mock: коли BLL запитає про інтернет, повернути "false"
+            
             _mockNet.Setup(net => net.IsConnected()).Returns(false);
             string expected = "Іван не може вчитись: немає інтернету.";
 
-            // Act
             string result = _studentService.StudyOnline(student);
 
-            // Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void StudyOnline_Teacher_WhenInternetIsConnected_ReturnsSuccess()
         {
-            // Arrange
             var teacher = new Teacher { Name = "Марія" };
             _mockNet.Setup(net => net.IsConnected()).Returns(true);
             string expected = "Марія (вчитель) вчиться онлайн.";
 
-            // Act
             string result = _studentService.StudyOnline(teacher);
 
-            // Assert
             Assert.AreEqual(expected, result);
         }
     }

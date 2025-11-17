@@ -2,15 +2,12 @@
 
 namespace Lab3_4
 {
-    /// Клас-компонент (видавець), що моделює автомобіль
-    /// та генерує подію про закінчення палива.
     public class Car(string model, double initialFuel, double consumptionRate = 10.0)
     {
         public string Model { get; } = model;
         public double FuelLevel { get; private set; } = initialFuel;
         public double FuelConsumptionRate { get; } = consumptionRate;
 
-        /// 1. Опис події з використанням стандартного делегата EventHandler<T>
         public event EventHandler<OutOfGasEventArgs>? OutOfGas;
 
         /// Метод, що ініціює перевірку та виклик події.
@@ -27,7 +24,6 @@ namespace Lab3_4
 
                 Console.WriteLine($"Машина проїхала лише {distancePossible:F1} км і зупинилась.");
 
-                // 2. Виклик події та передача аргументів 
                 OnOutOfGas(new OutOfGasEventArgs(fuelDeficit, DateTime.Now));
             }
             else
@@ -43,10 +39,8 @@ namespace Lab3_4
             Console.WriteLine($"Машину {Model} заправлено на {amount} л. Поточний рівень: {FuelLevel:F1} л.");
         }
 
-        /// 3. Захищений віртуальний метод-рейзер (той, що викликає подію).
         protected virtual void OnOutOfGas(OutOfGasEventArgs e)
         {
-            // Потокобезпечний виклик підписників
             OutOfGas?.Invoke(this, e);
         }
     }
