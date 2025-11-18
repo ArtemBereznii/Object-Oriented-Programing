@@ -11,7 +11,6 @@ namespace Restaurant.BLL.Services
         private readonly IIngredientRepository _ingredientRepo;
         private readonly IDishRepository _dishRepo;
 
-        // Сервіс отримує залежності (репозиторії) через конструктор
         public IngredientService(IIngredientRepository ingredientRepo, IDishRepository dishRepo)
         {
             _ingredientRepo = ingredientRepo;
@@ -32,13 +31,12 @@ namespace Restaurant.BLL.Services
 
         public void DeleteIngredient(int id)
         {
-            // БІЗНЕС-ЛОГІКА: Перевірка, чи не використовується інгредієнт 
+            // Перевірка, чи не використовується інгредієнт 
             var allDishes = _dishRepo.GetAll();
             bool isUsed = allDishes.Any(d => d.IngredientIds.Contains(id));
 
             if (isUsed)
             {
-                // Генерація власного винятку 
                 throw new EntityInUseException("Неможливо видалити інгредієнт, оскільки він використовується у страві.");
             }
 

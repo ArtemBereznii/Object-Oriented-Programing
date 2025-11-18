@@ -11,8 +11,6 @@ namespace Restaurant.Tests.Tests
     [TestClass]
     public class IngredientServiceTests
     {
-        // --- ТЕСТИ ДОДАВАННЯ (ADD) ---
-
         [TestMethod]
         public void AddIngredient_ShouldAddIngredientToRepository()
         {
@@ -30,8 +28,6 @@ namespace Restaurant.Tests.Tests
             Assert.AreEqual("Картопля", fakeRepo.Data[0].Name);
             Assert.IsTrue(result.Id > 0);
         }
-
-        // --- ТЕСТИ ОТРИМАННЯ (GET) ---
 
         [TestMethod]
         public void GetAllIngredients_ShouldReturnAllItems()
@@ -77,8 +73,6 @@ namespace Restaurant.Tests.Tests
             Assert.ThrowsException<NotFoundException>(() => service.GetIngredientById(999));
         }
 
-        // --- ТЕСТИ ПОШУКУ (SEARCH) ---
-
         [TestMethod]
         public void SearchIngredients_ShouldReturnMatches()
         {
@@ -97,8 +91,6 @@ namespace Restaurant.Tests.Tests
             Assert.IsFalse(result.Any(i => i.Name == "Цибуля"));
         }
 
-        // --- ТЕСТИ ОНОВЛЕННЯ (UPDATE) ---
-
         [TestMethod]
         public void UpdateIngredient_ShouldUpdateNameAndUnit()
         {
@@ -116,8 +108,6 @@ namespace Restaurant.Tests.Tests
             Assert.AreEqual("NewName", updated.Name);
             Assert.AreEqual("NewUnit", updated.Unit);
         }
-
-        // --- ТЕСТИ ВИДАЛЕННЯ (DELETE) ---
 
         [TestMethod]
         public void DeleteIngredient_ShouldDelete_WhenNotUsedInDish()

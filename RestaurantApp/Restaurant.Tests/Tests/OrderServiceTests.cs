@@ -31,8 +31,6 @@ namespace Restaurant.Tests.Tests
         [TestMethod]
         public void AddDishToOrder_ShouldCalculateTotalPriceCorrectly()
         {
-            // Це перевірка найголовнішої бізнес-логіки: ціна * кількість
-
             // Arrange
             var orderRepo = new FakeOrderRepository();
             var dishRepo = new FakeDishRepository();

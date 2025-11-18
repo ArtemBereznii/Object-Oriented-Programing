@@ -8,10 +8,9 @@ namespace Restaurant.DAL.Repositories
 {
     public class IngredientRepository : FileRepositoryBase<Ingredient>, IIngredientRepository
     {
-        // Вказуємо конкретний файл для збереження
         public IngredientRepository() : base("ingredients.json") { }
 
-        // Реалізація унікального методу пошуку
+        // Метод пошуку
         public IEnumerable<Ingredient> Search(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -19,7 +18,7 @@ namespace Restaurant.DAL.Repositories
                 return GetAll();
             }
 
-            return _entities.Where(i => i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+            return _entities.Where(i => i.Name != null && i.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

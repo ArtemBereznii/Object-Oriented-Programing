@@ -7,7 +7,6 @@ using System.Text.Json;
 
 namespace Restaurant.DAL.Repositories
 {
-    // internal - клас видно лише всередині проекту DAL
     public abstract class FileRepositoryBase<T> where T : class, IEntity
     {
         protected readonly string _filePath;
@@ -36,7 +35,6 @@ namespace Restaurant.DAL.Repositories
             }
             catch (Exception ex)
             {
-                // Тут має бути логування помилки
                 Console.WriteLine($"Помилка читання файлу {_filePath}: {ex.Message}");
                 _entities = new List<T>();
             }
@@ -53,14 +51,11 @@ namespace Restaurant.DAL.Repositories
             }
             catch (Exception ex)
             {
-                // Тут має бути логування помилки
                 Console.WriteLine($"Помилка запису у файл {_filePath}: {ex.Message}");
             }
         }
 
-        // --- Реалізація базових методів IRepository ---
-
-        public T GetById(int id)
+        public T? GetById(int id)
         {
             return _entities.FirstOrDefault(e => e.Id == id);
         }
@@ -83,7 +78,6 @@ namespace Restaurant.DAL.Repositories
             var existing = _entities.FirstOrDefault(e => e.Id == entity.Id);
             if (existing != null)
             {
-                // Це проста реалізація. В реальних проектах використовують AutoMapper
                 var index = _entities.IndexOf(existing);
                 _entities[index] = entity;
                 SaveData();

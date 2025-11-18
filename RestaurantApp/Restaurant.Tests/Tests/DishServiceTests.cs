@@ -12,8 +12,6 @@ namespace Restaurant.Tests.Tests
     [TestClass]
     public class DishServiceTests
     {
-        // --- ТЕСТИ ДОДАВАННЯ ТА ОТРИМАННЯ ---
-
         [TestMethod]
         public void AddDish_ShouldAddDishToRepository()
         {
@@ -42,8 +40,6 @@ namespace Restaurant.Tests.Tests
             Assert.ThrowsException<NotFoundException>(() => service.GetDishById(999));
         }
 
-        // --- ТЕСТИ ОНОВЛЕННЯ ---
-
         [TestMethod]
         public void UpdateDishDetails_ShouldUpdateFields()
         {
@@ -69,8 +65,6 @@ namespace Restaurant.Tests.Tests
             Assert.AreEqual(85m, updated.Price);
             Assert.AreEqual(20, updated.PreparationTime.TotalMinutes);
         }
-
-        // --- ТЕСТИ РОБОТИ З ІНГРЕДІЄНТАМИ СТРАВИ ---
 
         [TestMethod]
         public void AddIngredientToDish_ShouldAddId_WhenIngredientExists()
@@ -128,8 +122,6 @@ namespace Restaurant.Tests.Tests
             Assert.IsFalse(dish.IngredientIds.Contains(10)); // 10 видалено
             Assert.IsTrue(dish.IngredientIds.Contains(20));  // 20 залишилось
         }
-
-        // --- ТЕСТИ ВИДАЛЕННЯ ---
 
         [TestMethod]
         public void DeleteDish_ShouldRemoveFromRepo()

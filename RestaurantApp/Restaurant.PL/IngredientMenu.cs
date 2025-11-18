@@ -86,7 +86,6 @@ namespace Restaurant.PL
             ListAllIngredients();
             int id = ConsoleHelpers.ReadInt("\nВведіть ID інгредієнта для зміни", 1);
 
-            // Використовуємо BLL для отримання об'єкта
             var ingredient = _ingredientService.GetIngredientById(id);
 
             Console.WriteLine($"Поточна назва: {ingredient.Name}.");

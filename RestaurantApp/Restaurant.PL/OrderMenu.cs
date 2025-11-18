@@ -221,7 +221,6 @@ namespace Restaurant.PL
             }
         }
 
-        // Внутрішній помічник, щоб не дублювати код з ShowOrderDetails
         private void ShowOrderDetailsInternal(int orderId)
         {
             var order = _orderService.GetOrderById(orderId);

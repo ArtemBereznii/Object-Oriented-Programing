@@ -10,7 +10,7 @@ namespace Restaurant.DAL.Repositories
     {
         public OrderRepository() : base("orders.json") { }
 
-        // Реалізація пошуку (шукаємо за номером столика)
+        // Шукаємо за номером столика
         public IEnumerable<Order> Search(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -18,13 +18,12 @@ namespace Restaurant.DAL.Repositories
                 return GetAll();
             }
 
-            // Шукаємо за номером столика
             if (int.TryParse(keyword, out int tableNumber))
             {
                 return _entities.Where(o => o.TableNumber == tableNumber);
             }
 
-            return new List<Order>(); // Або інша логіка пошуку
+            return new List<Order>();
         }
     }
 }
